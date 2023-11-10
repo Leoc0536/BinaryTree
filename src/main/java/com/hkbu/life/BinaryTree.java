@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class BinaryTree {
     private ArrayList<Node> binaryTree;
     private int root = Integer.MIN_VALUE;
+    private int next_index = 0;
 
     public BinaryTree(){
         this.binaryTree = new ArrayList<>();
@@ -15,13 +16,22 @@ public class BinaryTree {
     public void addNode(Node node){
         if (binaryTree.isEmpty())
         {
-            root = 0;
+            root = next_index;
         }
         binaryTree.add(node);
+        int parent_index = (next_index-1)/2;
+        Node parent = binaryTree.get(parent_index);
+        if (next_index % 2 == 1){
+            parent.left=node;
+        }
+        else{
+            parent.right=node;
+        }
+        next_index++;
     }
 
-    public void getRoot(){
-        System.out.println(binaryTree.get(root));
+    public Node getRoot(){
+        return binaryTree.get(root);
     }
     public void printBinaryTree(){
         if(root < 0){
@@ -61,12 +71,13 @@ public class BinaryTree {
             // Press Ctrl+D to start debugging your code. We have set one breakpoint
             // for you, but you can always add more by pressing Cmd+F8.
         BinaryTree bt = new BinaryTree();
-        for (int i = 1; i <= 32; i++){
+        for (int i = 0; i <= 15; i++){
             bt.addNode(new Node(i));
         }
 //        bt.addNode(new Node(3));
         bt.printBinaryTree();
-//        System.out.println();
-//        bt.getRoot();
+
+        Node root = bt.getRoot();
+        System.out.println(root.left.left.right.right);
     }
 }
