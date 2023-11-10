@@ -2,11 +2,9 @@ package com.hkbu.life.Node;
 
 public class Node {
 
-    private Node left;
+    public Node left, right;
 
-    private Node right;
-
-    private int value;
+    int value;
 
     public Node(int value){
         this.value = value;
@@ -14,24 +12,10 @@ public class Node {
         this.right = null;
     }
 
-    public Node getLeft() {
-        return left;
-    }
-
-    public Node getRight() {
-        return right;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
     @Override
     public String toString() {
         return "Node{" +
                 "value=" + value +
-                ", left=" + left +
-                ", right=" + right +
                 '}';
     }
 }
