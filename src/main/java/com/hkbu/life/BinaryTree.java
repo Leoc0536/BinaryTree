@@ -61,14 +61,15 @@ public class BinaryTree {
     }
         else {
             int leftHeight = 0, rightHeight = 0;
-
+            // getting the height of left subtree
             if (temp.left ! = null)
                 leftHeight = findHeight(temp.left);
+            // getting the height of right subtree
             if (tmep.right ! = null)
                 rightHeight = findHeight(temp.right);
-
+            // comparing left and right subtree
             int height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
-
+            // return the height of tree and plus 1 because of the root count in
             return (height + 1)
     }
 
