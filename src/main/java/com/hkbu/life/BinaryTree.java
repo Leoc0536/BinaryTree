@@ -53,13 +53,32 @@ public class BinaryTree {
         while (left < right);
     }
 
+    class findHeight(Node temp)
+
+        if(root =null){
+        System.out.println("Binary Tree is Empty");
+        return 0
+    }
+        else {
+            int leftHeight = 0, rightHeight = 0;
+
+            if (temp.left ! = null)
+                leftHeight = findHeight(temp.left);
+            if (tmep.right ! = null)
+                rightHeight = findHeight(temp.right);
+
+            int height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+
+            return (height + 1)
+    }
+
     public static void main(String[] args) {
         // Press Opt+Enter with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
 
         // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
+        // Press Ctrl+D to start debugging your code. We have set one breakpoint
+        // for you, but you can always add more by pressing Cmd+F8.
         BinaryTree bt = new BinaryTree();
         for (int i = 1; i <= 32; i++){
             bt.addNode(new Node(i));
