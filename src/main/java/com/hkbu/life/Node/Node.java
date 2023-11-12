@@ -18,4 +18,8 @@ public class Node {
                 "value=" + value +
                 '}';
     }
+
+    public int getValue() {
+        return value;
+    }
 }

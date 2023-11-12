@@ -1,6 +1,10 @@
 # BinaryTree
 ## Contributors: Leo
 
+### Features:
+ - add Node
+
+
 If given list of Node:
 [0, 1, 2, 3, 4, 5, 6], 
 
