@@ -6,7 +6,7 @@ import java.util.List;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class BinaryTree {
-    private ArrayList<Node> binaryTree;
+    private static ArrayList<Node> binaryTree;
     private int root = Integer.MIN_VALUE;
 
     public BinaryTree(){
@@ -102,9 +102,34 @@ public class BinaryTree {
     // for testing purpose, use in BinaryTreeTest.java
     // src/test/java/com/hkbu/life/BinaryTreeTest.java
     public void addSampleNode(){
-        for (int i = 0; i <= 16; i++){
-            binaryTree.add(new Node(i));
+        for (int i = 0; i <= 16; i++) {
+            addNode(new Node(i));
         }
+    }
+
+//    return true if parent is greater than both child.
+    public boolean checkChild(int parentIndex){
+        int parentValue = binaryTree.get(parentIndex).getValue();
+        int rightChildIndex = parentIndex*2+2;
+        Integer rightChildValue = Integer.MAX_VALUE;
+        if (rightChildIndex < binaryTree.size()){
+            Node rightChild = binaryTree.get(rightChildIndex);
+            rightChildValue= rightChild.getValue();
+        }
+        int leftChildIndex = parentIndex*2+1;
+        int leftChildValue = binaryTree.get(leftChildIndex).getValue();
+        return (rightChildValue != null && parentValue < rightChildValue && parentValue > leftChildValue);
+    }
+
+    public String checkBinarySearchTree(){
+        int maxIndex = binaryTree.size();
+        System.out.println(maxIndex);
+        for (int i = maxIndex/2-1; i >= 0; i--) {
+            if(!checkChild(i)){
+                return "NOT";
+            }
+        }
+        return "it is binary search tree";
     }
 
     // for development testing only
@@ -117,9 +142,18 @@ public class BinaryTree {
             // for you, but you can always add more by pressing Cmd+F8.
         BinaryTree bt = new BinaryTree();
 
-//        bt.addNode(new Node(3));
-        bt.printBinaryTree();
+//        bt.addSampleNode();
+        bt.addNode(new Node(33));
+        bt.addNode(new Node(22));
+        bt.addNode(new Node(39));
+        bt.addNode(new Node(13));
+        bt.addNode(new Node(28));
+        bt.addNode(new Node(36));
+        bt.addNode(new Node(43));
 
+        bt.printBinaryTree();
+//        bt.addNode(new Node(3));
+        System.out.println(bt.checkBinarySearchTree());
 
         // figuring out Null pointer part (leo)
 //        System.out.println(root.left.left.right.right);
@@ -127,6 +161,6 @@ public class BinaryTree {
 //        for (int i = ; i <; i++) {
 //
 //        }
-        bt.getIndex(8);
+        System.out.println(bt.getIndex(8));
     }
 }
