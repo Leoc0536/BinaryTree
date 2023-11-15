@@ -19,7 +19,7 @@ public class Node {
                 '}';
     }
 
-    public int getValue() {
+    public Integer getValue() {
         return value;
     }
 }
