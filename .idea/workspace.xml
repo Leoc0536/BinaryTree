@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ed88f76-5ad6-4ac6-8006-69874c41a771" name="Changes" comment="amend">
+    <list default="true" id="4ed88f76-5ad6-4ac6-8006-69874c41a771" name="Changes" comment="new methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hkbu/life/BinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hkbu/life/BinaryTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hkbu/life/Node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hkbu/life/Node/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hkbu/life/Node/Node.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +97,7 @@
       <recent name="com.hkbu.life" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BinaryTreeTest.checkSameLevel">
+  <component name="RunManager" selected="Application.BinaryTree">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
       <option name="appServicePlanName" />
@@ -126,6 +124,32 @@
       <option name="resourceGroup" />
       <option name="stagingFolder" />
       <option name="subscription" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BinaryTree (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.hkbu.life.BinaryTree" />
+      <module name="BinaryTree" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hkbu.life.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BinaryTree (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.hkbu.life.BinaryTree" />
+      <module name="BinaryTree" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hkbu.life.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,8 +185,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BinaryTreeTest.checkSameLevel" />
         <item itemvalue="Application.BinaryTree" />
+        <item itemvalue="Application.BinaryTree (2)" />
+        <item itemvalue="Application.BinaryTree (1)" />
+        <item itemvalue="JUnit.BinaryTreeTest.checkSameLevel" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +200,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1699424377975</updated>
-      <workItem from="1699424379072" duration="23263000" />
+      <workItem from="1699424379072" duration="24845000" />
+      <workItem from="1700017448943" duration="4827000" />
+      <workItem from="1701097358968" duration="2480000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -200,7 +228,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699594933048</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="new methods">
+      <option name="closed" value="true" />
+      <created>1699770626740</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699770626740</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new methods">
+      <option name="closed" value="true" />
+      <created>1700027917086</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700027917086</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +277,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="add readme grpah" />
     <MESSAGE value="amend" />
-    <option name="LAST_COMMIT_MESSAGE" value="amend" />
+    <MESSAGE value="new methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="new methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

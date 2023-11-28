@@ -1,12 +1,68 @@
 package com.hkbu.life;
-import com.hkbu.life.Node.Node;
 import java.util.ArrayList;
 import java.util.List;
+class Node {
+
+    private Node left, right;
+
+    int value;
+
+    public Node(int value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+
+    public void setLeft(Node left) {
+        this.left = left;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public Node getLeft(){
+        if (String.valueOf(this.value).equals("null")){
+            return null;
+        }
+        return left;
+    }
+
+    public Node getRight(){
+        if (String.valueOf(this.value).equals("null")){
+            return null;
+        }
+        return right;
+    }
+    @Override
+    public String toString(){
+//        try {
+//            if (this.left==null || this.right==null){return "Node{null}";}
+//        }catch (Exception e){
+//            throw new NullPointerException("Null node cannot be accessed.");
+//        }
+        return "Node{" +
+                "value=" + value +
+                '}';
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+}
+
+
+
+
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class BinaryTree {
-    private static ArrayList<Node> binaryTree;
+    private ArrayList<Node> binaryTree;
     private int root = Integer.MIN_VALUE;
 
     public BinaryTree(){
@@ -27,10 +83,10 @@ public class BinaryTree {
         int parent_index = (index-1)/2;
         Node parent = binaryTree.get(parent_index);
         if (index % 2 == 1){
-            parent.left=node;
+            parent.setLeft(node);
         }
         else{
-            parent.right=node;
+            parent.setRight(node);
         }
     }
 
@@ -77,7 +133,7 @@ public class BinaryTree {
     }
 
     // return index if given value exists
-    public int getIndex(int value){
+    public int getIndexOfNode(int value){
         List<Node> t = binaryTree.stream().filter(n -> n.getValue() == value).toList();
         if(t.isEmpty()){
             return -1;
@@ -87,8 +143,8 @@ public class BinaryTree {
 
     // given two values (not index), return if they belongs to same level
     public boolean checkSameLevel(int valueOne, int valueTwo){
-        int indexOne = getIndex(valueOne);
-        int indexTwo = getIndex(valueTwo);
+        int indexOne = getIndexOfNode(valueOne);
+        int indexTwo = getIndexOfNode(valueTwo);
 
         System.out.println("index of value One: " + indexOne);
         System.out.println("index of value Two: " + indexTwo + "\n");
@@ -123,7 +179,6 @@ public class BinaryTree {
 
     public String checkBinarySearchTree(){
         int maxIndex = binaryTree.size();
-        System.out.println(maxIndex);
         for (int i = maxIndex/2-1; i >= 0; i--) {
             if(!checkChild(i)){
                 return "NOT";
@@ -133,7 +188,7 @@ public class BinaryTree {
     }
 
     // for development testing only
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RuntimeException{
         // Press Opt+Enter with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
 
@@ -150,17 +205,31 @@ public class BinaryTree {
         bt.addNode(new Node(28));
         bt.addNode(new Node(36));
         bt.addNode(new Node(43));
+        bt.addNode(new Node(44));
+
 
         bt.printBinaryTree();
 //        bt.addNode(new Node(3));
-        System.out.println(bt.checkBinarySearchTree());
+        System.out.println("Binary? "+bt.checkBinarySearchTree());
 
+        BinaryTree bt_two = new BinaryTree();
+
+//        bt.addSampleNode();
+        bt_two.addNode(new Node(33));
+        bt_two.addNode(new Node(22));
+        bt_two.addNode(new Node(39));
+        bt_two.addNode(new Node(13));
+        bt_two.addNode(new Node(28));
+        bt_two.addNode(new Node(36));
+        bt_two.addNode(new Node(43));
+        System.out.println("Binary? "+bt_two.checkBinarySearchTree());
         // figuring out Null pointer part (leo)
-//        System.out.println(root.left.left.right.right);
+        Node rootOfbt = bt.getRoot();
+        System.out.println("root->left->left->left->right: "+rootOfbt.getLeft().getLeft().getRight());
+//        System.out.println(rootOfbt.left.left.right.right);
+        System.out.println("root->left->left->left->left->left: "+rootOfbt.getLeft().getLeft().getLeft().getLeft());
+        System.out.println("index of value 44: "+ bt.getIndexOfNode(44));
 
-//        for (int i = ; i <; i++) {
-//
-//        }
-        System.out.println(bt.getIndex(8));
+
     }
 }
