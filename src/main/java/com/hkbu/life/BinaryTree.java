@@ -40,11 +40,6 @@ class Node {
     }
     @Override
     public String toString(){
-//        try {
-//            if (this.left==null || this.right==null){return "Node{null}";}
-//        }catch (Exception e){
-//            throw new NullPointerException("Null node cannot be accessed.");
-//        }
         return "Node{" +
                 "value=" + value +
                 '}';
@@ -55,13 +50,8 @@ class Node {
     }
 }
 
-
-
-
-
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class BinaryTree {
+    // storing Nodes in ArrayList
     private ArrayList<Node> binaryTree;
     private int root = Integer.MIN_VALUE;
 
@@ -69,6 +59,7 @@ public class BinaryTree {
         this.binaryTree = new ArrayList<>();
     }
 
+    // add node and link to parent node, i.e.
     public void addNode(Node node){
         if (binaryTree.isEmpty())
         {
@@ -78,6 +69,7 @@ public class BinaryTree {
         linkParent(node);
     }
 
+    // link to parent node after adding new node(calculate index automatically
     public void linkParent(Node node){
         int index = binaryTree.indexOf(node);
         int parent_index = (index-1)/2;
@@ -90,35 +82,17 @@ public class BinaryTree {
         }
     }
 
-    public Node getRoot(){
-        return binaryTree.get(root);
-    }
-
-    public int getSize(){
-        return binaryTree.size();
-    }
-
     public void printBinaryTree(){
-        if(root < 0){
-            System.out.println("Binary Tree is Empty");
-            return;
-        }
-        int left = 0;
-        int temp = left * 2 + 1;
-        int right = binaryTree.size();
-        int level = 0;
-        do {
-            System.out.print("level " + level + " : ");
-            for (int i=left; i<temp; i++){
-                if(i>=right){break;}
-                System.out.print(binaryTree.get(i) + "\t");
+        int size = binaryTree.size();
+        int height = (int)Math.floor(Math.log(size)/Math.log(2));
+        for (int i = 0; i <= height; i++) {
+            System.out.print("level " + i + " : ");
+            List<Node> nodeList = getNodesByLevel(i);
+            for (Node node:nodeList) {
+                System.out.print(node + "\t");
             }
-            level++;
-            left = temp;
-            temp = temp *2+1;
             System.out.println();
         }
-        while (left < right);
     }
 
     // can use this to printing in reverse level order
@@ -132,7 +106,9 @@ public class BinaryTree {
         return binaryTree.subList(startIndex, endIndex);
     }
 
-    // return index if given value exists
+    // searching for the node values and return index if existed in binary tree
+    // i.e. 33, 22, 39
+    // getIndexOfNode(39) -> 2
     public int getIndexOfNode(int value){
         List<Node> t = binaryTree.stream().filter(n -> n.getValue() == value).toList();
         if(t.isEmpty()){
@@ -141,13 +117,11 @@ public class BinaryTree {
         return binaryTree.indexOf(t.get(0));
     }
 
-    // given two values (not index), return if they belongs to same level
+    // use for question three.
+    // given two values (not index), return if they belong to same level
     public boolean checkSameLevel(int valueOne, int valueTwo){
         int indexOne = getIndexOfNode(valueOne);
         int indexTwo = getIndexOfNode(valueTwo);
-
-        System.out.println("index of value One: " + indexOne);
-        System.out.println("index of value Two: " + indexTwo + "\n");
 
         int levelOne = (int)Math.floor(Math.log(indexOne+1)/Math.log(2));
         int levelTwo = (int)Math.floor(Math.log(indexTwo+1)/Math.log(2));
@@ -155,8 +129,6 @@ public class BinaryTree {
         return levelOne==levelTwo;
     }
 
-    // for testing purpose, use in BinaryTreeTest.java
-    // src/test/java/com/hkbu/life/BinaryTreeTest.java
     public void addSampleNode(){
         for (int i = 0; i <= 16; i++) {
             addNode(new Node(i));
@@ -177,27 +149,61 @@ public class BinaryTree {
         return (rightChildValue != null && parentValue < rightChildValue && parentValue > leftChildValue);
     }
 
+    // return true if tree is binary search tree structure
     public String checkBinarySearchTree(){
         int maxIndex = binaryTree.size();
         for (int i = maxIndex/2-1; i >= 0; i--) {
             if(!checkChild(i)){
-                return "NOT";
+                return "NO this tree is NOT a binary search tree.";
             }
         }
-        return "it is binary search tree";
+        return "This tree is a binary search tree.";
     }
+    // Question 1 or a start
+    public int getHeight() {
+        int size = binaryTree.size();
+        return (int)Math.floor(Math.log(size)/Math.log(2));
+    }
+    // Question 1 or a closed
 
-    // for development testing only
+    // Question 2 or b start
+    public void printNodesInReverseOrder() {
+        int size = binaryTree.size();
+        int height = (int)Math.floor(Math.log(size)/Math.log(2));
+        // wrap it with for loop in reverse order
+        for (int i = height; i >= 0; i--) {
+            System.out.print("level " + i + " : ");
+            List<Node> nodeList = getNodesByLevel(i);
+            for (Node node: nodeList) {
+                System.out.print(node + "\t");
+            }
+            System.out.println();
+        }
+    }
+    // Question 2 or b closed
+
+
+    // Question 3
+    public String checkCousin(int nodeOne, int nodeTwo) {
+        if (checkSameLevel(nodeOne, nodeTwo)) {
+            // get node index
+            int indexOne = getIndexOfNode(nodeOne);
+            int indexTwo = getIndexOfNode(nodeTwo);
+
+            // calculation of parent node index
+            int parentOfOne = (indexOne - 1) / 2;
+            int parentOfTwo = (indexTwo - 1) / 2;
+            if (parentOfOne != parentOfTwo){
+                return nodeOne+" and " + nodeTwo+" are cousins.";
+            }
+        }
+        return nodeOne + " and " + nodeTwo + " are not cousins.";
+    }
+    // End of Question 3
+
     public static void main(String[] args) throws RuntimeException{
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
         BinaryTree bt = new BinaryTree();
 
-//        bt.addSampleNode();
         bt.addNode(new Node(33));
         bt.addNode(new Node(22));
         bt.addNode(new Node(39));
@@ -207,14 +213,12 @@ public class BinaryTree {
         bt.addNode(new Node(43));
         bt.addNode(new Node(44));
 
-
         bt.printBinaryTree();
-//        bt.addNode(new Node(3));
-        System.out.println("Binary? "+bt.checkBinarySearchTree());
+        System.out.println("Binary Search Tree? "+bt.checkBinarySearchTree());
+
 
         BinaryTree bt_two = new BinaryTree();
 
-//        bt.addSampleNode();
         bt_two.addNode(new Node(33));
         bt_two.addNode(new Node(22));
         bt_two.addNode(new Node(39));
@@ -222,14 +226,34 @@ public class BinaryTree {
         bt_two.addNode(new Node(28));
         bt_two.addNode(new Node(36));
         bt_two.addNode(new Node(43));
-        System.out.println("Binary? "+bt_two.checkBinarySearchTree());
-        // figuring out Null pointer part (leo)
-        Node rootOfbt = bt.getRoot();
-        System.out.println("root->left->left->left->right: "+rootOfbt.getLeft().getLeft().getRight());
-//        System.out.println(rootOfbt.left.left.right.right);
-        System.out.println("root->left->left->left->left->left: "+rootOfbt.getLeft().getLeft().getLeft().getLeft());
-        System.out.println("index of value 44: "+ bt.getIndexOfNode(44));
+        bt_two.addNode(new Node(57));
+        bt_two.addNode(new Node(63));
 
+        bt_two.printBinaryTree();
+        // ---------Question One---------
+        System.out.println("----------Question One----------");
+        System.out.println("Height of tree: " + bt.getHeight());
 
+        // ---------Question Two---------
+        System.out.println("----------Question Two----------");
+        bt.printNodesInReverseOrder();
+        System.out.println("----------Tree Two----------");
+        bt_two.printNodesInReverseOrder();
+
+        // ---------Question Three-------
+        System.out.println("----------Question Three----------");
+        System.out.println("----------Tree One----------");
+        System.out.println(bt.checkCousin(33,36));
+        System.out.println(bt.checkCousin(43,44));
+        System.out.println(bt.checkCousin(13,36));
+        System.out.println("----------Tree Two----------");
+        System.out.println(bt_two.checkCousin(39,13));
+        System.out.println(bt_two.checkCousin(63,33));
+        System.out.println(bt_two.checkCousin(63,57));
+
+        // ---------Question Four---------
+        System.out.println("----------Question Four-----------");
+        System.out.println(bt.checkBinarySearchTree());
+        System.out.println(bt_two.checkBinarySearchTree());
     }
 }

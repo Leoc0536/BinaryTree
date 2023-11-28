@@ -5,7 +5,7 @@
  - add Node
 
 
-If given list of Node:
+If given list of Node: (in index form)
 [0, 1, 2, 3, 4, 5, 6], 
 
 ```mermaid
