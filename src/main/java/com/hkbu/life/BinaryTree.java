@@ -129,12 +129,6 @@ public class BinaryTree {
         return levelOne==levelTwo;
     }
 
-    public void addSampleNode(){
-        for (int i = 0; i <= 16; i++) {
-            addNode(new Node(i));
-        }
-    }
-
 //    return true if parent is greater than both child.
     public boolean checkChild(int parentIndex){
         int parentValue = binaryTree.get(parentIndex).getValue();
@@ -150,6 +144,7 @@ public class BinaryTree {
     }
 
     // return true if tree is binary search tree structure
+    // Question 4
     public String checkBinarySearchTree(){
         int maxIndex = binaryTree.size();
         for (int i = maxIndex/2-1; i >= 0; i--) {
@@ -159,14 +154,16 @@ public class BinaryTree {
         }
         return "This tree is a binary search tree.";
     }
-    // Question 1 or a start
+    // End of Question 4
+
+    // Question 1
     public int getHeight() {
         int size = binaryTree.size();
         return (int)Math.floor(Math.log(size)/Math.log(2));
     }
-    // Question 1 or a closed
+    // End of Question 1
 
-    // Question 2 or b start
+    // Question 2
     public void printNodesInReverseOrder() {
         int size = binaryTree.size();
         int height = (int)Math.floor(Math.log(size)/Math.log(2));
@@ -180,7 +177,7 @@ public class BinaryTree {
             System.out.println();
         }
     }
-    // Question 2 or b closed
+    // End of Question 2
 
 
     // Question 3
