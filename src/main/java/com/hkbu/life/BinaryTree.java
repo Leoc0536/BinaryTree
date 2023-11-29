@@ -140,7 +140,10 @@ public class BinaryTree {
         }
         int leftChildIndex = parentIndex*2+1;
         int leftChildValue = binaryTree.get(leftChildIndex).getValue();
-        return (rightChildValue != null && parentValue < rightChildValue && parentValue > leftChildValue);
+        if (leftChildValue==Integer.MIN_VALUE && rightChildValue==Integer.MIN_VALUE){
+            return true;
+        }
+        return (parentValue <= rightChildValue && parentValue >= leftChildValue);
     }
 
     // return true if tree is binary search tree structure
@@ -207,7 +210,6 @@ public class BinaryTree {
         bt.addNode(new Node(13));
         bt.addNode(new Node(28));
         bt.addNode(new Node(36));
-        bt.addNode(new Node(43));
         bt.addNode(new Node(44));
 
         bt.printBinaryTree();
@@ -252,6 +254,35 @@ public class BinaryTree {
         System.out.println("----------Question Four-----------");
         System.out.println(bt.checkBinarySearchTree());
         System.out.println(bt_two.checkBinarySearchTree());
+
+
+        // Due to data type restriction, if adding node with null as value, Integer.MIN_VALUE should be used.
+
+
+        // Testing-------------
+        BinaryTree test = new BinaryTree();
+        test.addNode(new Node(8));
+        test.addNode(new Node(3));
+        test.addNode(new Node(10));
+        test.addNode(new Node(1));
+        test.addNode(new Node(6));
+        test.addNode(new Node(Integer.MIN_VALUE));
+//        test.addNode(new Node(null));
+        test.addNode(new Node(14));
+        test.addNode(new Node(Integer.MIN_VALUE));
+//        test.addNode(new Node(null));
+//        test.addNode(new Node(null));
+        test.addNode(new Node(Integer.MIN_VALUE));
+        test.addNode(new Node(4));
+        test.addNode(new Node(7));
+        test.addNode(new Node(Integer.MIN_VALUE));
+//        test.addNode(new Node(null));
+//        test.addNode(new Node(null));
+        test.addNode(new Node(Integer.MIN_VALUE));
+        test.addNode(new Node(13));
+        test.addNode(new Node(20));
+        test.printBinaryTree();
+        System.out.println(test.checkBinarySearchTree());
     }
 }
 
